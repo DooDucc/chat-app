@@ -1,0 +1,39 @@
+.message-form {
+    // position: absolute;
+    // width: 100%;
+    // margin: 0 auto;
+    background-color: #fff;
+    // bottom: 0;
+    padding: 10px 20px;
+    z-index: 100;
+
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 30px;
+
+        input {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .icon-box {
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
+        .send-icon {
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}

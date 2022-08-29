@@ -1,0 +1,186 @@
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+    background-color: #f1f5f9;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 40%;
+            height: 100%;
+            background-color: var(--main-color);
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            .logo {
+                color: #ff6a3d;
+                font-size: 60px;
+            }
+
+            .title {
+                color: #fff;
+                font-size: 20px;
+                font-weight: 300;
+                margin-top: 30px;
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            height: 100%;
+            padding: 40px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            -webkit-box-shadow: 7px 0px 13px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 7px 0px 13px 0px rgba(0, 0, 0, 0.2);
+
+            .btn-group {
+                flex: 1;
+                display: flex;
+                gap: 4px;
+                margin-bottom: 30px;
+                font-weight: 500;
+                cursor: pointer;
+
+                .right-btn,
+                span {
+                    color: #ccc;
+                }
+
+                .right-btn {
+                    &.active {
+                        color: #000;
+                    }
+                }
+            }
+
+            .content {
+                flex: 4;
+                display: flex;
+                justify-content: space-between;
+
+                .content-left {
+                    width: 48%;
+                    height: 100%;
+
+                    .title {
+                        font-size: 24px;
+                        font-weight: 500;
+                        margin-bottom: 40px;
+                    }
+
+                    .form {
+                        display: flex;
+                        flex-direction: column;
+
+                        input {
+                            width: 80%;
+                            border-bottom: 1px solid #ccc;
+                            padding: 8px;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+
+                .content-mid {
+                    width: 4%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .line {
+                        width: 1px;
+                        height: 100%;
+                        background-color: #ccc;
+                    }
+                }
+
+                .content-right {
+                    display: flex;
+                    flex-direction: column;
+                    width: 48%;
+                    height: 100%;
+
+                    .title {
+                        text-align: center;
+                    }
+
+                    .fb-login {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: auto;
+
+                        .wrap {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 80%;
+                            background-color: var(--main-color);
+                            padding: 10px 14px;
+                            border-radius: 10px;
+
+                            p {
+                                color: #fff;
+                                font-size: 14px;
+                            }
+
+                            .icon {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .go {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding-top: 10px;
+
+                .error {
+                    color: red;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+
+                .register-btn {
+                    font-size: 15;
+                    font-weight: 500;
+                    padding: 10px 16px;
+                    border: 1px solid #000;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #000;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
