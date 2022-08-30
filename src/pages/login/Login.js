@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { Facebook, Google } from '@mui/icons-material';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { updateDoc, doc } from 'firebase/firestore';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { updateDoc, doc, Timestamp, setDoc } from 'firebase/firestore';
 
 import styles from './Login.module.scss';
 import { auth, db } from '../../firebase/config';
@@ -21,6 +21,25 @@ const Login = () => {
     const { email, password, error, loading } = data;
 
     const navigate = useNavigate();
+
+    const signInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider)
+            .then((result) => {
+                setDoc(doc(db, 'users', result.user.uid), {
+                    uid: result.user.uid,
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    ava: result.user.photoURL,
+                    createdAt: Timestamp.fromDate(new Date()),
+                    isOnline: true,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        navigate('/chat');
+    };
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value, error: null });
@@ -104,7 +123,7 @@ const Login = () => {
                                     <p>Login with</p>
                                     <Facebook className={cx('icon')} />
                                 </button>
-                                <button className={cx('wrap')} onClick={() => {}}>
+                                <button className={cx('wrap')} onClick={signInWithGoogle}>
                                     <p>Login with</p>
                                     <Google className={cx('icon')} />
                                 </button>

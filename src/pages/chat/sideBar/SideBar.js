@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Segment } from '@mui/icons-material';
-import { db, auth } from '../../../firebase/config';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import styles from './SideBar.module.scss';
 import User from '../user/User';
+import { db, auth } from '../../../firebase/config';
 
 const cx = classNames.bind(styles);
 
 const SideBar = ({ selectUser }) => {
+    const [user] = useAuthState(auth);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const usersRef = collection(db, 'users');
-        const q = query(usersRef, where('uid', 'not-in', [auth.currentUser.uid]));
+        const q = query(usersRef, where('uid', 'not-in', [user.uid]));
         const unsub = onSnapshot(q, (querySnapshot) => {
             let users = [];
             querySnapshot.forEach((doc) => {

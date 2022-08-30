@@ -1,6 +1,7 @@
 const routes = {
     login: '/',
     register: '/register',
+    profile: '/profile',
     chat: '/chat',
 };
 

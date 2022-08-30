@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { updateDoc, doc, orderBy, collection, query, onSnapshot } from 'firebase/firestore';
 
@@ -46,12 +46,21 @@ const Chat = () => {
 
     return (
         <div className={cx('chat')}>
+            <button className={cx('logout-btn')} onClick={handleSignOut}>
+                Log out
+            </button>
+            <Link className={cx('profile-btn')} to="/profile">
+                Profile
+            </Link>
             <div className={cx('container')}>
-                <button className={cx('logout-btn')} onClick={handleSignOut}>
-                    Log out
-                </button>
                 <SideBar selectUser={selectUser} />
-                {selectedUser ? <ChatBox selectedUser={selectedUser} messages={messages} /> : null}
+                {selectedUser ? (
+                    <ChatBox selectedUser={selectedUser} setSelectedUser={setSelectedUser} messages={messages} />
+                ) : (
+                    <div className={cx('empty')}>
+                        <p>Select an user to start your conversation.</p>
+                    </div>
+                )}
             </div>
         </div>
     );
